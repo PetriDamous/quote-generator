@@ -37,17 +37,19 @@ body {
   align-items: center;
 }
 
+/* Utility */
+
+.long-txt {
+  font-size: 2rem;
+}
+
 /* Typeography */
 
 .quote-text {
   font-weight: var(--weight-bold);
   font-style: italic;
   margin-bottom: 10px;  
-  font-size: 1.75rem;
-}
-
-.long-quote {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .fa-quote-left {
@@ -113,9 +115,15 @@ button:active {
 
 /* Media Queries */
 
-@media (min-width: 320px) {
+@media (min-width: 330px) {
   button {
     font-size: 1rem;
+  }
+}
+
+@media (min-width: 400px) {
+  .quote-text {
+    font-size: 1.74rem;
   }
 }
 
