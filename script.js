@@ -4,6 +4,9 @@ const authorTxt = document.getElementById("author");
 
 const twitterBtn = document.getElementById("twitter-btn");
 const newQuoteBtn = document.getElementById("new-quote-btn");
+const loader = document.getElementById("loader");
+
+// Functions
 
 const randomNum = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
@@ -17,6 +20,18 @@ const longQoute = () => {
     }
 }
 
+const showLoader = () => {
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+}
+
+const hideLoader = () => {
+    if (!loader.hidden) {
+        loader.hidden = true;
+        quoteContainer.hidden = false;
+    }
+} 
+
 const tweetQuote = () => {
     const quote = quoteTxt.textContent;    
     const author = authorTxt.textContent;
@@ -27,6 +42,8 @@ const tweetQuote = () => {
 // Fetch Quote from API
 async function getQuote () {    
     const apiUrl = "https://type.fit/api/quotes";
+
+    showLoader();
 
     try {
 
@@ -42,13 +59,14 @@ async function getQuote () {
         quoteTxt.textContent = text;
         authorTxt.textContent = author === null ? "unknown" : author;
 
+        hideLoader();
         
-
     } catch (error) {
         getQuote();        
     }
 }
 
+// Event Listeners
 window.addEventListener("resize", longQoute);
 
 newQuoteBtn.addEventListener("click", getQuote);
